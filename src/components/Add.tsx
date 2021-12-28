@@ -23,7 +23,7 @@ const Add: FC<Props> = (props) => {
     });
     const redirect = useNavigate();
 
-    const handleSubmit = (event: any) => {
+    const handleSubmit = (event:React.FormEvent<HTMLFormElement>) => {
         event.preventDefault();
         props.handleAdd(student);
         // setStudent({ id: '',
@@ -33,12 +33,11 @@ const Add: FC<Props> = (props) => {
         redirect('/');
     };
 
-    const handleChange = (event: any) => {
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement>) => {
         var name = event.target.name;
         setStudent({ ...student, [name]: event.target.value })
     };
 
-    console.log('running');
     useEffect(() => {
         setStudent(props.studentEdit);
     }, [props.studentEdit]);
@@ -49,7 +48,7 @@ const Add: FC<Props> = (props) => {
                 <table>
                     <tr>
                         <td>ID</td>
-                        <td><input type='text' placeholder='input id' name='id' value={student.id} onChange={handleChange}></input></td>
+                        <td><input type='text' placeholder='input id' name='id' value={student.id} onChange={handleChange} readOnly={props.studentEdit.id !== '' ? true : false}></input></td>
                     </tr>
                     <tr>
                         <td>Name</td>

@@ -11,6 +11,7 @@ interface Student {
     score: string
 };
 
+
 const App: FC<{ className: string }> = (props) => {
 
     const list: Array<Student> = [
@@ -30,14 +31,8 @@ const App: FC<{ className: string }> = (props) => {
 
     // const storedStudentList: Array<Student> =  JSON.parse(localStorage.getItem('studentList'));
 
-    const student: Student = {
-        id: '3',
-        name: 'Tung',
-        age: '14',
-        score: '7.0'
-    };
-
     const [studentList, setStudentList] = useState<Array<Student>>(list);
+    console.log(studentList);
     const [studentEdit, setStudentEdit] = useState<Student>({
         id: '',
         name: '',
@@ -67,6 +62,7 @@ const App: FC<{ className: string }> = (props) => {
             setStudentList([...studentList, student]);
         } else {
             const studentListEdit = studentList.map((item: Student) => {
+                console.log(item.id)
                 if (student.id === item.id) {
                     return student;
                 }
@@ -82,12 +78,19 @@ const App: FC<{ className: string }> = (props) => {
         })
     }
 
+
+
     return (
         <div>
             <nav className="navbar navbar-expand-lg navbar-light bg-secondary">
                 <a className="navbar-brand text-light" href="/">TungTL</a>
                 <Link to='/' className='nav-link text-light'>Home</Link>
-                <Link to='/add' className='nav-link text-light'>Add</Link>
+                <Link to='/add' className='nav-link text-light' onClick={() => setStudentEdit({
+                    id: '',
+                    name: '',
+                    age: '',
+                    score: ''
+                })}>Add</Link>
             </nav>
             <Routes>
                 <Route path='/' element={<Home studentList={studentList} handleDelete={handleDelete} handleUpdate={handleUpdate} />} ></Route>

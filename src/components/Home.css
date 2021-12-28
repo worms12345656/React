@@ -6,6 +6,7 @@ table , tr, td {
    border: 1px black solid;
    border-collapse: collapse;
 }
+
 td:hover {
    font-weight: bold;
 }

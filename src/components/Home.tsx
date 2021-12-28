@@ -1,4 +1,4 @@
-import React, { FC, useState } from 'react';
+import React, { FC } from 'react';
 import { Link } from 'react-router-dom';
 import './Home.css';
 
@@ -17,6 +17,7 @@ interface Props {
 
 const Home: FC<Props> = (props) => {
 
+
     return (
         <div className='home'>
             <h1>Student List</h1>
@@ -31,7 +32,7 @@ const Home: FC<Props> = (props) => {
                     </tr>
                 </thead>
                 <tbody>
-                    {props.studentList.map((student,index) => {
+                    {props.studentList.map((student, index) => {
                         return (
                             <tr key={index}>
                                 <td>{student.id}</td>
@@ -47,30 +48,6 @@ const Home: FC<Props> = (props) => {
                     })}
                 </tbody>
             </table>
-            {/* <table className="table table-dark">
-                <tr>
-                    <td>Id</td>
-                    <td>Name</td>
-                    <td>Age</td>
-                    <td>Score</td>
-                    <td>Action </td>
-                </tr>
-                {console.log(localStorage.getItem('studentList'))}
-                {props.studentList.map(student => {
-                    return (
-                        <tr>
-                            <td>{student.id}</td>
-                            <td>{student.name}</td>
-                            <td>{student.age}</td>
-                            <td>{student.score}</td>
-                            <td>
-                                <Link to='/edit' onClick={() => { props.handleUpdate(student.id) }}>Update</Link>
-                                <p onClick={() => { props.handleDelete(student.id) }}>Delete</p>
-                            </td>
-                        </tr>
-                    );
-                })}
-            </table> */}
         </div>
     );
 }
